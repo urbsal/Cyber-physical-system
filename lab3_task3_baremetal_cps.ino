@@ -19,14 +19,13 @@ void timer_init() {
 
     OCR1A = 15624;               // 1 second
     TIMSK1 |= (1 << OCIE1A);     // enable Timer1 compare interrupt
-    sei();                        // enable global interrupts
-}
+    sei();                       
 
-void timer_led_start(){/// do not use this part i am doing exercise 3 in the same code 
+void timer_led_start(){ // This is timer_0 which mainly used register A and B for CTC and prescale 
     TCNT0 = 0;
     TCCR0A |= (1 << WGM01);
     TCCR0B |= (1<<CS02 )| (1<<CS00);
-    OCR0A = 156;
+    OCR0A = 156;// prescale value set 156
     TIMSK0 |= (1 << OCIE0A);
 
 
@@ -44,7 +43,7 @@ int main(void) {
             PORTB |= (1 << LED); // LED ON
             timer_led_start();      // keep ON for 0.1s
             PORTB &= ~(1 << LED);// LED OFF
-            led_flag = 0;        // reset flag
+            led_flag = 0;        
         }
     }
 }
