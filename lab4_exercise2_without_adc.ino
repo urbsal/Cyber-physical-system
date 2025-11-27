@@ -38,7 +38,7 @@ ISR(TIMER0_COMPA_vect) {
         if (!fan_on) {
             second_counter++;
 
-            if (second_counter >= 15) {   // 15 seconds OFF
+            if (second_counter >= 10) {   // 10 seconds OFF
                 fan_on = 1;
                 fan_counter = 0;
                 pwm_value = PWM_MIN;      // start at 50
